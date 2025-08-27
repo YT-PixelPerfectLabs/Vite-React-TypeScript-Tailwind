@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variables for design tokens. Section-level theming via [data-theme="..."]. */
+@layer base {
+  :root,
+  [data-theme='light'] {
+    --background: 0 0% 100%;
+    --foreground: 222 31% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 31% 10%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 222 11% 35%;
+
+    --border: 214 32% 91%;
+    --ring: 222 76% 52%;
+
+    --primary: 222 76% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 31% 15%;
+
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --shadow: 222 47% 11%;
+  }
+
+  [data-theme='dark'] {
+    --background: 220 20% 7%;
+    --foreground: 120 35% 82%; /* soft phosphor */
+
+    --card: 220 20% 9%;
+    --card-foreground: 120 35% 82%;
+
+    --muted: 220 14% 14%;
+    --muted-foreground: 120 20% 65%;
+
+    --border: 220 16% 20%;
+    --ring: 120 80% 45%;
+
+    --primary: 120 70% 55%; /* terminal green */
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 16% 22%;
+    --secondary-foreground: 120 35% 82%;
+
+    --accent: 45 95% 55%; /* amber */
+    --accent-foreground: 220 20% 7%;
+
+    --shadow: 220 40% 2%;
+  }
+
+  /* Warm "brand" theme example */
+  [data-theme='brand'] {
+    --background: 30 33% 94%;
+    --foreground: 23 32% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 23 32% 20%;
+
+    --muted: 30 30% 90%;
+    --muted-foreground: 23 22% 35%;
+
+    --border: 28 30% 80%;
+    --ring: 20 54% 45%;
+
+    --primary: 20 54% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 28 35% 88%;
+    --secondary-foreground: 23 32% 25%;
+
+    --accent: 12 72% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --shadow: 23 55% 20%;
+  }
+
+  /* Fresh, airy palette */
+  [data-theme='mint'] {
+    /* background + text */
+    --background: 160 45% 95%; /* mint paper */
+    --foreground: 180 30% 16%;
+
+    /* surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 180 30% 16%;
+    --muted: 160 30% 90%;
+    --muted-foreground: 180 16% 35%;
+
+    /* accents */
+    --primary: 160 60% 35%; /* teal-green */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 150 35% 88%; /* pale green */
+    --secondary-foreground: 180 30% 16%;
+    --accent: 200 80% 45%; /* cyan */
+    --accent-foreground: 0 0% 100%;
+
+    /* ui */
+    --border: 160 22% 72%;
+    --ring: 160 70% 38%;
+    --shadow: 180 25% 18%;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 font-medium transition;
+  }
+  .btn-primary {
+    @apply bg-primary text-primary-foreground shadow-soft hover:opacity-90;
+  }
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:opacity-90;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full bg-accent px-3 py-1 text-sm text-accent-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float {
+    animation: none !important;
+  }
+}
